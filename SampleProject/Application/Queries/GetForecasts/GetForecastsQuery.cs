@@ -1,3 +1,6 @@
 using MediatR;
 
-public record GetForecastsQuery() : IRequest<WeatherForecastDto[]>;
+namespace Application.Queries.GetForecasts
+{
+    public record GetForecastsQuery() : IRequest<WeatherForecastDto[]>;
+}

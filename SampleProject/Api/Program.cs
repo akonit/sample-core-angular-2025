@@ -1,3 +1,4 @@
+using Application.Queries.GetForecasts;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
