@@ -1,5 +1,5 @@
-SampleProject/obj
-SampleProject/bin
-SampleUi/node_modules
+obj
+bin
+node_modules
 SampleUi/.vscode
 SampleUi/.angular
