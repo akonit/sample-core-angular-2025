@@ -2,4 +2,5 @@
     display: flex;
     padding: 8px;
     background-color: lightgray;
+    height: 100vh;
 }
