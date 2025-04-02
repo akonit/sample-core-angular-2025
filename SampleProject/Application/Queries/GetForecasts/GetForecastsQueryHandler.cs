@@ -2,25 +2,36 @@ using MediatR;
 
 namespace Application.Queries.GetForecasts
 {
-    public record GetForecastsQueryHandler : IRequestHandler<GetForecastsQuery, WeatherForecastDto[]>
+    public record GetForecastsQueryHandler(IWeatherDalService WeatherDalService) : IRequestHandler<GetForecastsQuery, WeatherForecastDto[]>
     {
-        public Task<WeatherForecastDto[]> Handle(GetForecastsQuery request, CancellationToken cancellationToken)
+        public async Task<WeatherForecastDto[]> Handle(GetForecastsQuery request, CancellationToken cancellationToken)
         {
             var summaries = new[]
             {
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
             };
 
-            var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecastDto
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-                .ToArray();
+            var settings = await this.WeatherDalService.GetSettingsAsync(cancellationToken);
 
-            return Task.FromResult(forecast);
+            var forecast = Enumerable.Range(1, 5).Select(index =>
+            {
+                var unit = settings?.TemperatureUnit ?? Dal.Weather.TemperatureUnit.Celsius;
+                var temperature = Random.Shared.Next(-20, 55);
+                if (unit == Dal.Weather.TemperatureUnit.Fahrenheit)
+                {
+                    temperature = 32 + (int)(temperature / 0.5556);
+                }
+
+                return new WeatherForecastDto
+                                (
+                                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                                    temperature,
+                                    unit,
+                                    summaries[Random.Shared.Next(summaries.Length)]
+                                );
+            }).ToArray();
+
+            return forecast;
         }
     }
 }

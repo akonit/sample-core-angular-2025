@@ -9,7 +9,7 @@
         @if (this.forecasts()) {
             @for (forecast of this.forecasts(); track $index) {
                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                    On date {{forecast.date}} weather is {{forecast.summary}} - {{forecast.temperatureC}} C / {{forecast.temperatureF}} F
+                    On date {{forecast.date}} weather is {{forecast.summary}}: {{forecast.temperature}} {{forecast.temperatureUnit | temperature}}
                 </div>
             }
         }    

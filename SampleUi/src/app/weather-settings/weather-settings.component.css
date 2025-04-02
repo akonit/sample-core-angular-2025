@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 800px;
+    background-color: white;
+    padding: 16px;
+}
+
+.setting-button {
+    width: 150px;
+}

@@ -1,12 +1,13 @@
 import { Component, DestroyRef, effect, OnInit, signal } from '@angular/core';
-import { IWeatherForecast, WeatherService } from './weather-app.service';
+import { IWeatherForecast, TemperatureUnit, WeatherService } from './weather-app.service';
 import { retry, switchMap, timer } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TemperaturePipe } from '../pipes/temperature.pipe';
 
 @Component({
   selector: 'app-weather-app',
-  imports: [CommonModule, DatePipe],
+  imports: [CommonModule, DatePipe, TemperaturePipe],
   templateUrl: './weather-app.component.html',
   styleUrl: './weather-app.component.css'
 })

@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 import { WeatherAppComponent } from './weather-app/weather-app.component';
+import { WeatherSettingsComponent } from './weather-settings/weather-settings.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/about', pathMatch: 'full' },
+  { path: '', redirectTo: '/weather', pathMatch: 'full' },
   { path: 'weather', component: WeatherAppComponent },
-  { path: 'about', component: WeatherAppComponent },
+  { path: 'weather-settings', component: WeatherSettingsComponent },
 ];

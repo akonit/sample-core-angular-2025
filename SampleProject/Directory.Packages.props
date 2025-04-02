@@ -1,8 +1,13 @@
 <Project>
   <ItemGroup>
-    <PackageVersion Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.0"/>
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.0"/>
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.0"/>
-    <PackageVersion Include="MediatR" Version="12.5.0"/>
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageVersion>
+    <PackageVersion Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.0" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.0" />
+    <PackageVersion Include="MediatR" Version="12.5.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.3" />
   </ItemGroup>
 </Project>
