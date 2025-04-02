@@ -1,8 +1,17 @@
-    <h1>Current forecast</h1>
-    @if (this.forecasts()) {
-        @for (forecast of this.forecasts(); track $index) {
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-                On date {{forecast.date}} weather is {{forecast.summary}} - {{forecast.temperatureC}} C / {{forecast.temperatureF}} F
-            </div>
-        }
+    @if (this.isLoading()) {
+        <h1>Current forecast</h1>
+        <div>Loading ...</div>
+    } @else {
+        <div style="display: flex; flex-direction: row; gap: 8px; align-items: center; justify-content: space-between;">
+            <h1>Current forecast</h1>
+            <div>Last updated at {{this.lastUpdateDate() | date:"yyyy-MM-dd HH:mm:ss"}}</div>
+        </div>
+        @if (this.forecasts()) {
+            @for (forecast of this.forecasts(); track $index) {
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    On date {{forecast.date}} weather is {{forecast.summary}} - {{forecast.temperatureC}} C / {{forecast.temperatureF}} F
+                </div>
+            }
+        }    
     }
+    
