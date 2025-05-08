@@ -1,12 +1,31 @@
 :host {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
     min-width: 800px;
     background-color: white;
+    padding: 1rem 1rem;
+}
+
+.settings-container {
+    display: flex;
+    flex-direction: column;
     padding: 16px;
+    gap: 1rem;
+}
+
+.settings-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.button-group {
+    display: flex;
+    gap: 16px;
 }
 
 .setting-button {
+    font-size: 1rem;
+    padding: 8px 16px;
     width: 150px;
 }

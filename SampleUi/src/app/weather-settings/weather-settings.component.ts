@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { WeatherService } from '../weather-app/weather-app.service';
 import { take } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-weather-settings',
@@ -9,14 +10,18 @@ import { take } from 'rxjs';
   styleUrl: './weather-settings.component.css'
 })
 export class WeatherSettingsComponent {
-  constructor(private readonly service: WeatherService) {
+  constructor(
+    private readonly service: WeatherService,
+    private readonly snackBar: MatSnackBar) {
   }
 
   public useCelsius() {
-    this.service.useCelsius().pipe(take(1)).subscribe(() => alert("Switched to Celsius"));
+    this.service.useCelsius().pipe(take(1)).subscribe(() => 
+      this.snackBar.open('Switched to Celsius', 'Close', { duration: 3000, verticalPosition: 'top' }));
   }
 
   public useFahrenheit() {
-    this.service.useFahrenheit().pipe(take(1)).subscribe(() => alert("Switched to Fahrenheit"));
+    this.service.useFahrenheit().pipe(take(1)).subscribe(() => 
+      this.snackBar.open('Switched to Fahrenheit', 'Close', { duration: 3000, verticalPosition: 'top' }));
   }
 }

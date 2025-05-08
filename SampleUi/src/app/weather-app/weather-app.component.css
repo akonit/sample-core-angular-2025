@@ -1,8 +1,27 @@
 :host {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
     min-width: 800px;
     background-color: white;
-    padding: 16px;
+    padding: 1rem 1rem;
+}
+
+.weather-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.weather-container {
+    display: flex; 
+    flex-direction: row; 
+    gap: 1.5rem; 
+    align-items: center; 
+    justify-content: space-between;
+}
+
+.weather-date {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; 
 }
