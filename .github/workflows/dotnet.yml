@@ -30,17 +30,4 @@ jobs:
     - name: Build unit tests image
       run: docker build -f UnitTests/Dockerfile -t dotnet-tests .
     - name: Run unit tests
-      run: |
-        mkdir -p test-results
-        docker run --rm -v ${{ github.workspace }}/test-results:/app/TestResults dotnet-tests
-    - name: Store test results
-      uses: actions/upload-artifact@v4
-      with:
-        name: test-results
-        path: test-results/TestResults.trx
-    - name: Prettify test report
-      uses: dorny/test-reporter@v1
-      with:
-        name: Unit Tests
-        path: test-results/TestResults.trx
-        reporter: dotnet-trx
+      run: docker run --rm dotnet-tests
