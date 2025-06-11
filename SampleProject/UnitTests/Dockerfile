@@ -9,4 +9,4 @@ RUN dotnet restore ./UnitTests/UnitTests.csproj
 
 # Run the unit tests
 RUN dotnet build  UnitTests/UnitTests.csproj -c Debug --no-restore
-ENTRYPOINT ["dotnet", "test", "UnitTests/UnitTests.csproj", "--no-restore", "--logger:trx;LogFileName=TestResults.trx", "--results-directory", "/app/TestResults"]
+ENTRYPOINT ["dotnet", "test", "UnitTests/UnitTests.csproj", "--no-restore"]
