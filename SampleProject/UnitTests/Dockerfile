@@ -4,12 +4,9 @@ WORKDIR /app
 # restore
 COPY Directory.Build.props .
 COPY Directory.Packages.props .
-COPY UnitTests/UnitTests.csproj ./UnitTests/
+COPY UnitTests/ ./UnitTests/
 RUN dotnet restore ./UnitTests/UnitTests.csproj
 
-# publish
-COPY UnitTests/ ./UnitTests/
-RUN dotnet build  UnitTests/UnitTests.csproj -c Debug --no-restore
-
 # Run the unit tests
+RUN dotnet build  UnitTests/UnitTests.csproj -c Debug --no-restore
 ENTRYPOINT ["dotnet", "test", "UnitTests/UnitTests.csproj", "--no-restore", "--logger:trx;LogFileName=TestResults.trx", "--results-directory", "/app/TestResults"]
