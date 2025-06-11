@@ -12,4 +12,4 @@ COPY UnitTests/ ./UnitTests/
 RUN dotnet build  UnitTests/UnitTests.csproj -c Debug --no-restore
 
 # Run the unit tests
-ENTRYPOINT ["dotnet", "test", "UnitTests/UnitTests.csproj", "--no-restore", "--logger:trx"]
+ENTRYPOINT ["dotnet", "test", "UnitTests/UnitTests.csproj", "--no-restore", "--logger:trx;LogFileName=TestResults.trx", "--results-directory", "/app/TestResults"]
