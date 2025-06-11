@@ -13,6 +13,6 @@ public class UnitTest1
         var result = first + second;
 
         // Assert
-        Assert.Equal(3, result);
+        Assert.Equal(4, result);
     }
 }
