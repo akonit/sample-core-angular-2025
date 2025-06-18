@@ -1,6 +1,6 @@
 import { Component, DestroyRef, OnInit, resource, signal } from '@angular/core';
 import { WeatherService } from './weather-app.service';
-import { firstValueFrom, retry, timer } from 'rxjs';
+import { firstValueFrom, timer } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TemperaturePipe } from '../pipes/temperature.pipe';
@@ -15,8 +15,8 @@ export class WeatherAppComponent implements OnInit {
   public lastUpdateDate = signal<Date | undefined>(undefined);
 
   public forecastsResource = resource({
-    params: () => ({ value: this.timerValue() }),
-    loader: async ({ }) => {
+    params: () => this.timerValue(),
+    loader: async () => {
       this.lastUpdateDate.set(new Date());
       return await firstValueFrom(this.service.getForecasts());
     },
@@ -29,7 +29,6 @@ export class WeatherAppComponent implements OnInit {
 
   public ngOnInit(): void {
     timer(0, 15 * 1000).pipe(
-      takeUntilDestroyed(this.destroyRef), 
-      retry()).subscribe((x) => this.timerValue.update(current => current + 1));
+      takeUntilDestroyed(this.destroyRef)).subscribe((x) => this.timerValue.update(current => current + 1));
   }
 }
