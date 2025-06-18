@@ -1,15 +1,20 @@
-    @if (this.isLoading()) {
+    @if (this.forecastsResource.isLoading()) {
         <div class="weather-container">
             <span class="weather-title">Current forecast</span>
             <div>Loading ...</div>
+        </div>
+    } @else if (this.forecastsResource.error()) {
+        <div class="weather-container">
+            <span class="weather-title">Current forecast</span>
+            <div>Failed to get data from server</div>
         </div>
     } @else {
         <div class="weather-container">
             <span class="weather-title">Current forecast</span>
             <div>Last updated at {{this.lastUpdateDate() | date:"yyyy-MM-dd HH:mm:ss"}}</div>
         </div>
-        @if (this.forecasts()) {
-            @for (forecast of this.forecasts(); track $index) {
+        @if (this.forecastsResource.value()) {
+            @for (forecast of this.forecastsResource.value(); track $index) {
                 <div class="weather-date">
                     On date {{forecast.date}} weather is {{forecast.summary}}: {{forecast.temperature}} {{forecast.temperatureUnit | temperature}}
                 </div>

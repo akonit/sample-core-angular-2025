@@ -1,6 +1,6 @@
-import { Component, DestroyRef, effect, OnInit, signal } from '@angular/core';
-import { IWeatherForecast, TemperatureUnit, WeatherService } from './weather-app.service';
-import { retry, switchMap, timer } from 'rxjs';
+import { Component, DestroyRef, OnInit, resource, signal } from '@angular/core';
+import { WeatherService } from './weather-app.service';
+import { firstValueFrom, retry, timer } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TemperaturePipe } from '../pipes/temperature.pipe';
@@ -12,26 +12,24 @@ import { TemperaturePipe } from '../pipes/temperature.pipe';
   styleUrl: './weather-app.component.css'
 })
 export class WeatherAppComponent implements OnInit {
-  public forecasts = signal<IWeatherForecast[] | undefined>(undefined);
   public lastUpdateDate = signal<Date | undefined>(undefined);
 
-  public isLoading = signal(true);
+  public forecastsResource = resource({
+    params: () => ({ value: this.timerValue() }),
+    loader: async ({ }) => {
+      this.lastUpdateDate.set(new Date());
+      return await firstValueFrom(this.service.getForecasts());
+    },
+  });
+
+  private timerValue = signal(0);
 
   constructor(private readonly service: WeatherService, private readonly destroyRef: DestroyRef) {
-      effect(() => {
-          this.forecasts();
-          this.lastUpdateDate.set(new Date());
-      });
   }
 
   public ngOnInit(): void {
     timer(0, 15 * 1000).pipe(
       takeUntilDestroyed(this.destroyRef), 
-      switchMap(() => this.service.getForecasts()),
-      retry()).subscribe((x) =>
-        {
-          this.forecasts.set(x);
-          this.isLoading.set(false);
-        });
+      retry()).subscribe((x) => this.timerValue.update(current => current + 1));
   }
 }
