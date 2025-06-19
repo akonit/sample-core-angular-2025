@@ -21,16 +21,16 @@ export class WeatherService {
     }
 
     public getForecasts() : Observable<IWeatherForecast[]> {
-        return this.http.get<IWeatherForecast[]>('http://localhost:5285/weatherforecast');
+        return this.http.get<IWeatherForecast[]>('https://localhost:7238/weatherforecast');
     }
 
     public useCelsius() : Observable<Object> {
         const params = new HttpParams().set('temperatureUnit', TemperatureUnit.celsius);
-        return this.http.post('http://localhost:5285/weatherforecast/temperatureUnit', null, {params});
+        return this.http.post('https://localhost:7238/weatherforecast/temperatureUnit', null, {params});
     }
 
     public useFahrenheit() : Observable<Object> {
         const params = new HttpParams().set('temperatureUnit', TemperatureUnit.fahrenheit);
-        return this.http.post('http://localhost:5285/weatherforecast/temperatureUnit', null, {params});
+        return this.http.post('https://localhost:7238/weatherforecast/temperatureUnit', null, {params});
     }
 }
