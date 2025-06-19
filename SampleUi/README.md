@@ -1,4 +1,4 @@
-SampleUi
+UI
 ===
 
 ng serve

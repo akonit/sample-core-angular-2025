@@ -1,4 +1,4 @@
-Sampe things
+Weather service
 ===
 
 dotnet run

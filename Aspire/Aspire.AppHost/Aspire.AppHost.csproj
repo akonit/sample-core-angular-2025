@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SampleProject\Api\Api.csproj" />
+    <ProjectReference Include="..\..\SampleGateway\GatewayApi\GatewayApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
