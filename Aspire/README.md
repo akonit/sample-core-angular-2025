@@ -1,4 +1,4 @@
-Simple way to launch all backend services
+Simple way to launch all services
 ===
 
 - dotnet run --project Aspire.AppHost
