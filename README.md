@@ -1,3 +1,8 @@
-# sample-core-angular-2025
-nothing serious here
+# My experiments
 
+Simple way to launch all services
+---
+
+- dotnet run --project Aspire.AppHost
+- http://localhost:4200/weather - applicaiton
+- https://localhost:17048 - aspire dashboard

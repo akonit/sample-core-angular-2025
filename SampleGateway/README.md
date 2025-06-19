@@ -1,4 +1,0 @@
-Yarp Gateway
-===
-
-dotnet run
