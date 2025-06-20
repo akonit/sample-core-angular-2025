@@ -1,19 +1,18 @@
 <Project>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.3">
+    <PackageVersion Include="FastEndpoints" Version="6.2.0" />
+    <PackageVersion Include="FastEndpoints.Swagger" Version="6.2.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.6">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageVersion>
-    <PackageVersion Include="Swashbuckle.AspNetCore.Swagger" Version="8.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerGen" Version="8.1.0" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.0" />
     <PackageVersion Include="MediatR" Version="12.5.0" />
-    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.3" />
-    <PackageVersion Include="coverlet.collector" Version="6.0.2" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
-    <PackageVersion Include="xunit" Version="2.9.2" />
-    <PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
-    <PackageVersion Include="xunit.analyzers" Version="1.16.0" />
+    <PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.6" />
+    <PackageVersion Include="coverlet.collector" Version="6.0.4" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageVersion Include="xunit" Version="2.9.3" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="3.1.1" />
+    <PackageVersion Include="xunit.analyzers" Version="1.22.0" />
     <PackageVersion Include="npgsql" Version="9.0.3" />
   </ItemGroup>
 </Project>

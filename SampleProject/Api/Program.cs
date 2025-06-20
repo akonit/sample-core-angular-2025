@@ -1,6 +1,8 @@
 using Application.Commands;
 using Application.Dal.Weather;
 using Application.Queries.GetForecasts;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Infrastructure.Db;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -8,8 +10,8 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
+builder.Services.AddFastEndpoints()
+                .AddSwaggerDocument();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetForecastsQuery).Assembly));
 
 builder.Services.AddCors(options =>
@@ -29,25 +31,11 @@ builder.Services.AddScoped<IWeatherDalService, WeatherDalService>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
 app.UseCors("AllowAngularApp");
 
 app.UseHttpsRedirection();
 
-app.MapGet(
-        "/weatherforecast",
-        async (IMediator mediator, CancellationToken ct) => await mediator.Send(new GetForecastsQuery(), ct))
-    .WithName("GetWeatherForecast");
-
-app.MapPost(
-        "/weatherforecast/temperatureUnit",
-        async (TemperatureUnit temperatureUnit, IMediator mediator, CancellationToken ct)
-            => await mediator.Send(new SaveTemperatureUnitCommand(temperatureUnit), ct))
-    .WithName("SetTemperatureUnit");
+app.UseFastEndpoints()
+   .UseSwaggerGen();
 
 app.Run();
