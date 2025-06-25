@@ -14,6 +14,6 @@ public class SetTemperatureUnitEndpoint(IMediator mediator) : Endpoint<Temperatu
         Group<WeatherForecastGroup>();
     }
 
-    public override Task HandleAsync(TemperatureUnit temperatureUnit, CancellationToken ct) =>
-        mediator.Send(new SaveTemperatureUnitCommand(temperatureUnit), ct);
+    public override Task HandleAsync(TemperatureUnit temperatureUnit, CancellationToken ct)
+    => mediator.Send(new SaveTemperatureUnitCommand(temperatureUnit), ct);
 }
