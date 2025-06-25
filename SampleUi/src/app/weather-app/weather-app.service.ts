@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from 'rxjs';
 
-const WeatherHost: string = 'https://localhost:6457/weather-api';
+const WeatherHost = 'https://localhost:6457/weather-api';
 
 export interface IWeatherForecast
 {
@@ -26,12 +26,12 @@ export class WeatherService {
         return this.http.get<IWeatherForecast[]>(`${WeatherHost}/weatherforecast`);
     }
 
-    public useCelsius() : Observable<Object> {
+    public useCelsius() : Observable<object> {
         const params = new HttpParams().set('temperatureUnit', TemperatureUnit.celsius);
         return this.http.post(`${WeatherHost}/weatherforecast/temperatureUnit`, null, {params});
     }
 
-    public useFahrenheit() : Observable<Object> {
+    public useFahrenheit() : Observable<object> {
         const params = new HttpParams().set('temperatureUnit', TemperatureUnit.fahrenheit);
         return this.http.post(`${WeatherHost}/weatherforecast/temperatureUnit`, null, {params});
     }

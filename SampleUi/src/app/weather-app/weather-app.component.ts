@@ -29,6 +29,6 @@ export class WeatherAppComponent implements OnInit {
 
   public ngOnInit(): void {
     timer(0, 15 * 1000).pipe(
-      takeUntilDestroyed(this.destroyRef)).subscribe((x) => this.timerValue.update(current => current + 1));
+      takeUntilDestroyed(this.destroyRef)).subscribe(() => this.timerValue.update(current => current + 1));
   }
 }
