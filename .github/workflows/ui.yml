@@ -3,11 +3,19 @@
 
 name: Node.js CI
 
+env:
+  UI_DIR: SampleUi
+
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - '${{ env.UI_DIR }}/**'
   pull_request:
     branches: [ "main" ]
+    paths:
+      - '${{ env.UI_DIR }}/**'
+  workflow_dispatch:
 
 jobs:
   build:
@@ -26,8 +34,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-        cache-dependency-path: ./SampleUi/package-lock.json
+        cache-dependency-path: ./${{ env.UI_DIR }}/package-lock.json
     - run: npm ci
-      working-directory: ./SampleUi
+      working-directory: ./${{ env.UI_DIR }}
     - run: npm run build --if-present
-      working-directory: ./SampleUi
+      working-directory: ./${{ env.UI_DIR }}
