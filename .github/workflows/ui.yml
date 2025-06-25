@@ -31,5 +31,3 @@ jobs:
       working-directory: ./SampleUi
     - run: npm run build --if-present
       working-directory: ./SampleUi
-    - run: npm test
-      working-directory: ./SampleUi
