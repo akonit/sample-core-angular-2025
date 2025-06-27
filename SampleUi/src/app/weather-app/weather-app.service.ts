@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { AuthService } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 
 const WeatherHost = 'https://localhost:6457/weather-api';
@@ -18,7 +19,7 @@ export enum TemperatureUnit {
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, public auth: AuthService) {}
 
   public getForecasts(): Observable<IWeatherForecast[]> {
     return this.http.get<IWeatherForecast[]>(`${WeatherHost}/weatherforecast`);

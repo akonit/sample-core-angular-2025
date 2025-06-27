@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Api.Endpoints;
 
-public class SetTemperatureUnitEndpoint(IMediator mediator) : Endpoint<TemperatureUnit>
+public class SetTemperatureUnitEndpoint(IMediator mediator) : EndpointWithoutRequest
 {
     public override void Configure()
     {
@@ -14,6 +14,10 @@ public class SetTemperatureUnitEndpoint(IMediator mediator) : Endpoint<Temperatu
         Group<WeatherForecastGroup>();
     }
 
-    public override Task HandleAsync(TemperatureUnit temperatureUnit, CancellationToken ct)
-    => mediator.Send(new SaveTemperatureUnitCommand(temperatureUnit), ct);
+    public override async Task HandleAsync(CancellationToken ct)
+    {
+        var unit = Query<TemperatureUnit>("temperatureUnit");
+        await mediator.Send(new SaveTemperatureUnitCommand(unit), ct);
+        await SendOkAsync(ct);
+    }
 }

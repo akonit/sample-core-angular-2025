@@ -1,0 +1,7 @@
+@if(auth.isLoading$ | async) {
+<span>Loading...</span>
+} @else if(auth.isAuthenticated$ | async) {
+<button mat-button color="primary" class="login-button" (click)="auth.logout()">Log out</button>
+} @else {
+<button mat-button color="primary" class="login-button" (click)="auth.loginWithRedirect()">Log in</button>
+}
